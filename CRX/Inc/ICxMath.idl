@@ -1,0 +1,819 @@
+//
+//（C）Copyright 2009 CAXA Technology Co., Ltd.. All rights reserved.
+//  End-users must also comply with the terms and conditions 
+//  in CAXA END-USER LICENSE AGREEMENT  while using this software.
+//
+//  版权所有（C）北京数码大方科技有限公司
+//  最终用户使用本软件必须遵守《CAXA最终用户许可使用协议》
+//
+//
+
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+interface ICxFiler;
+interface IVector;
+interface ILine;
+interface IPlane;
+interface IMatrix;
+interface IXYZW;
+interface IXYZTs;
+interface IXYZTsArray;
+interface IMathTool;
+interface ITolerance;
+interface IXYZArray;
+interface IExpressions;
+interface IVectorArray;
+interface ICxIXYZColl;
+interface IBox;
+
+//存档器接口
+[
+	object,
+	uuid(2F6DD8D0-4A88-4639-9408-24F7FF44BC3F),
+	dual,
+	nonextensible,
+	helpstring("ICxFiler Interface"),
+	pointer_default(unique)
+]
+interface ICxFiler: IDispatch
+{
+	[id(1), helpstring("method SaveDouble")] HRESULT SaveDouble([in]DOUBLE i_dVal);
+	[id(2), helpstring("method SaveLong")] HRESULT SaveLong([in]LONG i_lVal);
+	[id(3), helpstring("method SaveInt")] HRESULT SaveInt([in]INT i_iVal);
+	[id(4), helpstring("method SaveBuffer")] HRESULT SaveBuffer([in]LONG_PTR i_pBuffer, [in]ULONG i_ulNum);
+	[id(5), helpstring("method LoadDouble")] HRESULT LoadDouble([out,retval]DOUBLE* o_pdVal);
+	[id(6), helpstring("method LoadLong")] HRESULT LoadLong([out,retval]LONG* o_plVal);
+	[id(7), helpstring("method LoadInt")] HRESULT LoadInt([out,retval]INT* o_piVal);
+	[id(8), helpstring("method LoadBuffer")] HRESULT LoadBuffer([out]LONG_PTR* o_pBuffer, [in]ULONG i_ulNum);
+	[id(9), helpstring("method Attach")] HRESULT Attach([in]LONG_PTR i_pUnkown);
+	[id(10),helpstring("method Detach")] HRESULT Detach([out,retval]LONG_PTR* o_ppUnkown);
+	[id(11), helpstring("method SaveString")] HRESULT SaveString([in]BSTR i_bsString);
+	[id(12), helpstring("method LoadString")] HRESULT LoadString([out,retval]BSTR *o_pbsString);
+	[id(13), helpstring("method SaveSize_t")] HRESULT SaveSIZE_T([in]SIZE_T i_sztVal);
+	[id(14), helpstring("method LoadSize_t")] HRESULT LoadSIZE_T([out,retval]SIZE_T *o_psztVal);
+};
+[
+	object,
+	uuid(02598F3C-9D11-47B2-8091-025FD60C77E2),
+	dual,
+	nonextensible,
+	helpstring("IXYZ Interface"),
+	pointer_default(unique)
+]
+
+interface IXYZ : IDispatch{
+	[id(1), helpstring("method GetCXYZ")] HRESULT GetCXYZ([out,retval] LONG_PTR* o_pplCXYZAddress);
+	[id(2), helpstring("method PutIVect")] HRESULT PutIVect([in] IVector* i_pVec);
+	[id(3), helpstring("method PutIXYZ")] HRESULT PutIXYZ([in] IXYZ* i_pPt);
+	[id(4), helpstring("method GetXYZ")] HRESULT GetXYZ([out] DOUBLE* o_pdX, [out] DOUBLE* o_pdY, [out] DOUBLE* o_pdZ);
+	[id(5), helpstring("method PutXYZ")] HRESULT PutXYZ([in] DOUBLE i_dX, [in] DOUBLE i_dY, [in] DOUBLE i_dZ);
+	//[id(6), helpstring("method Plus")] HRESULT Plus([in] IXYZ* i_pDeltaPt, [out] IXYZ** o_ppPt);
+	//[id(7), helpstring("method Sub")] HRESULT Sub([in] IXYZ* i_pDeltaPt, [out] IXYZ** o_ppPt);
+	//[id(8), helpstring("method Multi")] HRESULT Multi([in] DOUBLE i_dScale, [out] IXYZ** o_ppPt);
+	//[id(9), helpstring("method Divide")] HRESULT Divide([in] DOUBLE i_dScale, [out] IXYZ** o_ppPt);
+	[id(10), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(11), helpstring("method Init")] HRESULT Init(void);
+	[id(12), helpstring("method Trans")] HRESULT Trans([in] IMatrix* i_pMat);
+	[id(13), helpstring("method Rotate")] HRESULT Rotate([in] DOUBLE i_dRotAng, [in] IVector* i_pVec, [in] IXYZ* i_pDtmPt);
+	[id(14), helpstring("method Scale")] HRESULT Scale([in] DOUBLE i_dScale, [in] IXYZ* i_pDtmPt);
+	[id(15), helpstring("method GetDistToPt")] HRESULT GetDistToPt([in] IXYZ* i_pPt, [out,retval] DOUBLE* o_pdDist);
+	//[id(16), helpstring("method GetDistToPts")] HRESULT GetDistToPts([in, size_is(i_iNum)] IXYZ* i_ppPts[], [in] LONG i_iNum, [out] DOUBLE* o_pdDist, [out,retval] LONG* o_plRt);
+	//[id(16), helpstring("method GetDistToPts")] HRESULT GetDistToPts([in] IXYZArray* i_pPts, [in] LONG i_iNum, [out] DOUBLE* o_pdDist, [out,retval] LONG* o_plRt);
+	[id(16), helpstring("method GetDistToPts")] HRESULT GetDistToPts([in] IXYZArray* i_pPts, [in] LONG i_iNum, [out] DOUBLE* o_pdDist, [out] int* o_iIdx);
+	[id(17), helpstring("method GetProjPt")] HRESULT GetProjPt([in] IPlane* i_pProjPln, [out] IXYZ** o_ppPt);
+	[id(18), helpstring("method IfTriPtsColn")] HRESULT IfTriPtsColn([in] IXYZ* i_pP0, [in] IXYZ* i_pP1, [out,retval] VARIANT_BOOL* o_pbVal);
+	[id(19), helpstring("method GetIVec")] HRESULT GetIVec([out] IVector** o_ppVec);
+	[id(20), helpstring("method IsSame")] HRESULT IsSame([in] IXYZ* i_pPt, [out,retval]VARIANT_BOOL* o_pbVal);
+	[id(21), helpstring("method GetMirrorPt")] HRESULT GetMirrorPt([in] IPlane* i_pMirrorPln, [out,retval] IXYZ** o_ppPt);
+	[id(22), helpstring("method TransToMatPln")] HRESULT TransToMatPln([in] IMatrix* i_pPlnMat, [out,retval] IXYZ** o_ppPt);
+	[id(23), helpstring("method TransToWcPln")] HRESULT TransToWcPln([in] IMatrix* i_pPlnMat, [out,retval] IXYZ** o_ppPt);
+	[id(24), helpstring("method TransToMatPlnXYZ")] HRESULT TransToMatPlnXYZ([in] IMatrix* i_pPlnMat, [out]double* o_dx,[out]double* o_dy,[out]double* o_dz);
+	[id(25), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(26), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+};
+[
+	object,
+	uuid(2E945919-BDC5-4C08-A11E-A95EB1C57817),
+	dual,
+	nonextensible,
+	helpstring("IVector Interface"),
+	pointer_default(unique)
+]
+interface IVector : IDispatch{
+	[id(1001), helpstring("method GetCVector")] HRESULT GetCVector([out,retval] LONG_PTR* o_pplCVectorAddress);
+	[id(1002), helpstring("method PutIXYZ")] HRESULT PutIXYZ([in] IXYZ* i_pPt);
+	[id(1003), helpstring("method PutIVect")] HRESULT PutIVect([in] IVector* i_pVec);
+	[id(1004), helpstring("method GetXYZ")] HRESULT GetXYZ([out] DOUBLE* o_pX, [out] DOUBLE* o_pY, [out] DOUBLE* o_pZ);
+	[id(1005), helpstring("method PutXYZ")] HRESULT PutXYZ([in] DOUBLE i_dX, [in] DOUBLE i_dY, [in] DOUBLE i_dZ);
+	[id(1006), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1007), helpstring("method Init")] HRESULT Init(void);
+	[id(1008), helpstring("method Unit")] HRESULT Unit(void);
+	[id(1009), helpstring("method Trans")] HRESULT Trans([in] IMatrix* i_pMat);
+
+
+	[id(1010), helpstring("method TransToMatPln")] HRESULT TransToMatPln([in] IMatrix* i_pPlnMat,[out,retval] IVector** o_ppVec);
+	[id(1011), helpstring("method TransToWcPln")] HRESULT TransToWcPln([in] IMatrix* i_pPlnMat,[out,retval] IVector** o_ppVec);
+	[id(1012), helpstring("method Scale")] HRESULT Scale([in] DOUBLE i_dScale, [in] IXYZ* i_pDtmPt);
+	[id(1013), helpstring("method IsSame")] HRESULT IsSame([in] IVector* i_pVec,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1014), helpstring("method IsSameDir")] HRESULT IsSameDir([in] IVector* i_pVec,[out,retval] VARIANT_BOOL* o_pbVal);
+
+
+	[id(1015), helpstring("method IsParl")] HRESULT IsParl([in] IVector* i_pVec,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1016), helpstring("method IsPerp")] HRESULT IsPerp([in] IVector* i_pVec,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1017), helpstring("method GetDotProd")] HRESULT GetDotProd([in] IVector* i_pVec,[out,retval] DOUBLE* o_dProd);
+	[id(1018), helpstring("method GetAngTo")] HRESULT GetAngTo([in] IVector* i_pEndVec,[out,retval] DOUBLE* o_dAng);
+	[id(1019), helpstring("method GetLength")] HRESULT GetLength([out,retval] DOUBLE* o_dLen);
+
+
+	[id(1020), helpstring("method GetHybrdProd")] HRESULT GetHybrdProd([in] IVector* i_pVec0,[in] IVector* i_pVec1,[out,retval] DOUBLE* o_dProd);
+	[id(1021), helpstring("method GetCrossProd")] HRESULT GetCrossProd([in] IVector* i_pVec,[out,retval] IVector** o_ppVec);
+	[id(1022), helpstring("method GetAngToXAx")] HRESULT GetAngToXAx([out,retval] DOUBLE* o_dAng);
+	[id(1023), helpstring("method GetAngToYAx")] HRESULT GetAngToYAx([out,retval] DOUBLE* o_dAng);
+	[id(1024), helpstring("method GetAngToZAx")] HRESULT GetAngToZAx([out,retval] DOUBLE* o_dAng);
+
+
+	[id(1025), helpstring("method GetPt")] HRESULT GetPt([out,retval] IXYZ** o_ppPt);
+	[id(1026), helpstring("method AntiDir")] HRESULT AntiDir(void);
+	[id(1027), helpstring("method GetProjVec")] HRESULT GetProjVec([in] IPlane* i_ProjPln,[out,retval] IVector** o_ppVec);
+	[id(1028), helpstring("method Rotate")] HRESULT Rotate([in] DOUBLE i_RotAng,[in] IVector* i_pDirVec);
+	[id(1029), helpstring("method Mirror")] HRESULT Mirror([in] IPlane* i_MirrorPln,[out,retval] IVector** o_ppVec);
+	[id(1030), helpstring("method PutByTwoPt")] HRESULT PutByTwoPt([in] IXYZ* i_pSPt,[in] IXYZ* i_pEPt);
+
+	[id(1031), helpstring("method Plus")] HRESULT Plus([in] IVector* i_pVec);
+	[id(1032), helpstring("method Sub")] HRESULT Sub([in] IVector* i_pVec);
+	[id(1033), helpstring("method Multi")] HRESULT Multi([in] DOUBLE i_dScale);
+    [id(1034), helpstring("method SetLength")] HRESULT SetLength([in] DOUBLE i_dLen);
+	[id(1035), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1036), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+};
+[
+	object,
+	uuid(C1374258-666A-4E28-B3F2-446301A5E8A7),
+	dual,
+	nonextensible,
+	helpstring("ILine Interface"),
+	pointer_default(unique)
+]
+interface ILine : IDispatch{
+	[id(1001), helpstring("method GetCLine")] HRESULT GetCLine([out,retval] LONG_PTR* o_pplCLineAddress);
+	[id(1002), helpstring("method Init")] HRESULT Init(void);
+	[id(1003), helpstring("method SetPt")] HRESULT SetPt([in] IXYZ* i_pStartPt);
+	[id(1004), helpstring("method SetDir")] HRESULT SetDir([in] IVector* i_pDirVec);
+	[id(1005), helpstring("method GetPt")] HRESULT GetPt([out,retval] IXYZ** o_ppPt);
+	[id(1006), helpstring("method GetDir")] HRESULT GetDir([out,retval] IVector** o_ppDirVec);
+	[id(1007), helpstring("method Trans")] HRESULT Trans([in] IMatrix* i_pMat);
+	[id(1008), helpstring("method Rotate")] HRESULT Rotate([in] DOUBLE i_RotAng, [in] IVector* i_pVec, [in] IXYZ* i_pDtmPt);
+	[id(1009), helpstring("method Mirror")] HRESULT Mirror([in] IPlane* i_pMirPln, [out,retval] ILine** o_ppLine);
+	[id(1010), helpstring("method GetAngTo")] HRESULT GetAngTo([in] ILine* i_pLine, [out,retval] DOUBLE* o_dAng);
+	[id(1011), helpstring("method IsParl")] HRESULT IsParl([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+
+
+	[id(1012), helpstring("method IsCopln")] HRESULT IsCopln([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1013), helpstring("method IsPerp")] HRESULT IsPerp([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1014), helpstring("method GetParlLn")] HRESULT GetParlLn([in] IXYZ* i_pPt,[out,retval] ILine** o_ppParlLine);
+	[id(1015), helpstring("method GetAngLn")] HRESULT GetAngLn([in] IXYZ* i_pPt,[in] DOUBLE i_dAng,[out,retval] ILine** o_ppAngLine);
+	[id(1016), helpstring("method GetPerpLn")] HRESULT GetPerpLn([in] IXYZ* i_pPt, [out,retval] ILine** i_ppPerpLine);
+
+
+	[id(1017), helpstring("method IsOn")] HRESULT IsOn([in] IXYZ* i_pPt,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1018), helpstring("method GetProjLn")] HRESULT GetProjLn([in] IPlane* i_pProjPln,[out] ILine** o_ppProjLine);
+	[id(1019), helpstring("method GetProjIntPt")] HRESULT GetProjIntPt([in] ILine* i_pLine,[in] IPlane* i_pProjPln ,[out,retval] IXYZ** o_ppPt);
+	[id(1020), helpstring("method GetIntPt")] HRESULT GetIntPt([in] ILine* i_pLine,[out,retval] IXYZ** o_ppIntPt);
+	[id(1021), helpstring("method IsSame")] HRESULT IsSame([in] ILine* i_pLine,[out,retval]VARIANT_BOOL* o_pbVal);
+
+
+	[id(1022), helpstring("method GetDistToPt")] HRESULT GetDistToPt([in] IXYZ* i_pPt, [out,retval] DOUBLE* o_pDist);
+	[id(1023), helpstring("method GetDistToLn")] HRESULT GetDistToLn([in] ILine* i_pLine,[out,retval] DOUBLE* o_pDist);
+	[id(1024), helpstring("method GetPerpPt")] HRESULT GetPerpPt([in] IXYZ* i_pPt,[out,retval] IXYZ** o_ppIntPt);
+	[id(1025), helpstring("method IsLegal")] HRESULT IsLegal([out,retval]VARIANT_BOOL* o_pbVal);
+
+
+	//[id(1026), helpstring("method PutILine")] HRESULT PutILine([in] ILine* i_pLine);
+	[id(1026), helpstring("method PutIXYZTwo")] HRESULT PutIXYZTwo([in] IXYZ* i_pStartPt,[in] IXYZ* i_pEndPt);
+	[id(1027), helpstring("method PutXYZTwo")] HRESULT PutXYZTwo([in] double i_dStax,[in] double i_dStay,[in] double i_dStaz,
+		                                                   [in] double i_dEndx,[in] double i_dEndy,[in] double i_dEndz);
+	[id(1028), helpstring("method PutIXYZIVect")] HRESULT PutIXYZIVect([in] IXYZ* i_pPt,[in] IVector* i_DirVec);
+	[id(1029), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1030), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+
+};
+[
+	object,
+	uuid(8F20D475-E777-464A-8B7B-EB20C9B6E7BE),
+	dual,
+	nonextensible,
+	helpstring("IPlane Interface"),
+	pointer_default(unique)
+]
+interface IPlane : IDispatch{
+	[id(1001), helpstring("method GetCPlane")] HRESULT GetCPlane([out,retval] LONG_PTR* o_pplCPlaneAddress);
+
+	[id(1002), helpstring("method GetPlnCoef")] HRESULT GetPlnCoef([out,retval] IXYZW** o_ppParas);
+	[id(1003), helpstring("method GetPt")] HRESULT GetPt([out,retval] IXYZ** o_ppPt);
+	[id(1004), helpstring("method SetPt")] HRESULT SetPt([in] IXYZ* i_pPt);
+	[id(1005), helpstring("method GetNorm")] HRESULT GetNorm([out,retval] IVector** o_ppVec);
+	[id(1006), helpstring("method SetNorm")] HRESULT SetNorm([in] IVector* i_pVec);
+
+
+	[id(1007), helpstring("method Set")] HRESULT Set([in] IXYZ* i_pPt,[in] IVector* i_pVec);
+	[id(1008), helpstring("method IsOnXYZ")] HRESULT IsOnXYZ([in] IXYZ* i_pPt,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1009), helpstring("method IsOnLine")] HRESULT IsOnLine([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1010), helpstring("method IsParlLine")] HRESULT IsParlLine([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1011), helpstring("method IsParlPlane")] HRESULT IsParlPlane([in] IPlane* i_pPlane,[out,retval] VARIANT_BOOL* o_pbVal);
+
+
+	[id(1012), helpstring("method IsPerpPlane")] HRESULT IsPerpPlane([in] IPlane* i_pPlane,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1013), helpstring("method IsPerpLine")] HRESULT IsPerpLine([in] ILine* i_pLine,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1014), helpstring("method GetDistToForPt")] HRESULT GetDistToForPt([in] IXYZ* i_pPt,[out,retval] DOUBLE* o_dDist);
+	[id(1015), helpstring("method GetDistToForLine")] HRESULT GetDistToForLine([in] ILine* i_pLine,[out,retval] DOUBLE* o_dDist);
+	[id(1016), helpstring("method GetDistToForPlane")] HRESULT GetDistToForPlane([in] IPlane* i_pPlane,[out,retval] DOUBLE* o_dDist);
+
+	[id(1017), helpstring("method GetPerpLn")] HRESULT GetPerpLn([in] IXYZ* i_pPt,[out,retval] ILine** o_ppLine);
+	[id(1018), helpstring("method GetPerpPln")] HRESULT GetPerpPln([in] ILine* i_pLine,[out,retval] IPlane** o_ppPlane);
+	[id(1019), helpstring("method GetParlPlnForPt")] HRESULT GetParlPlnForPt([in] IXYZ* i_pPt,[out,retval] IPlane** o_ppPlane);
+	[id(1020), helpstring("method GetParlPlnForDis")] HRESULT GetParlPlnForDis([in] DOUBLE i_dDist,[out,retval] IPlane** o_ppPlane);
+	[id(1021), helpstring("method GetAngToPln")] HRESULT GetAngToPln([in] IPlane* i_pPlane,[out,retval] DOUBLE* o_dAng);
+
+
+	[id(1022), helpstring("method GetInsctPt")] HRESULT GetInsctPt([in] ILine* i_pLine,[out,retval] IXYZ** o_ppPt);
+	[id(1023), helpstring("method GetInsctLn")] HRESULT GetInsctLn([in] IPlane* i_pPlane,[out,retval] ILine** o_ppLine);
+	[id(1024), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1025), helpstring("method PutIPlane")] HRESULT PutIPlane([in]IPlane* i_pPln);
+	[id(1026), helpstring("method PutTriPts")] HRESULT PutTriPts([in]IXYZ* i_pPt1,[in]IXYZ* i_pPt2,[in]IXYZ* i_pPt3);
+	[id(1027), helpstring("method PutByCoef")] HRESULT PutByCoef([in]DOUBLE i_dA,[in]DOUBLE i_dB,[in]DOUBLE i_dC,[in]DOUBLE i_dD);
+    [id(1028), helpstring("method PutByPtNorm")] HRESULT PutByPtNorm([in]IXYZ* i_pPt,[in]IVector* i_pNorm);
+	[id(1031), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1032), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+};
+[
+	object,
+	uuid(F54A3035-5903-4D53-A668-A097789BF0F8),
+	dual,
+	nonextensible,
+	helpstring("IMatrix Interface"),
+	pointer_default(unique)
+]
+interface IMatrix : IDispatch{
+	[id(1), helpstring("method GetCMatrix")] HRESULT GetCMatrix([out,retval] LONG_PTR* o_pplCMatrixAddress);
+	[id(2), helpstring("method Put")] HRESULT Put([in] SHORT i_iM1, [in] DOUBLE i_Mat[4][4]);
+	[id(3), helpstring("method PutCMatrix")] HRESULT PutCMatrix([in] LONG_PTR i_lCMatrixAddress);
+	[id(4), helpstring("method PutIMatrix")] HRESULT PutIMatrix([in] IMatrix* i_pMat);
+	[id(9), helpstring("method Multi")] HRESULT Multi([in] IMatrix* i_pMat, [out,retval] IMatrix** o_ppMat);
+
+	[id(10), helpstring("method SetOri")] HRESULT SetOri([in] IXYZ* i_pOri);
+	[id(11), helpstring("method ChangeXAxTo")] HRESULT ChangeXAxTo([in] IVector* i_pVecX);
+	[id(12), helpstring("method ChangeYAxTo")] HRESULT ChangeYAxTo([in] IVector* i_pVecY);
+	[id(13), helpstring("method ChangeZAxTo")] HRESULT ChangeZAxTo([in] IVector* i_pVecZ);
+	[id(14), helpstring("method SetPAx")] HRESULT SetPAx([in] IVector* i_pVecP);
+	[id(15), helpstring("method SetScale")] HRESULT SetScale([in] DOUBLE i_dScale);
+	[id(16), helpstring("method Get2DArray")] HRESULT Get2DArray([out,retval] DOUBLE o_dMat[4][4]);
+	[id(17), helpstring("method GetXAx")] HRESULT GetXAx([out,retval] IVector** o_ppVecX);
+	[id(18), helpstring("method GetYAx")] HRESULT GetYAx([out,retval] IVector** o_ppVecY);
+	[id(19), helpstring("method GetZAx")] HRESULT GetZAx([out,retval] IVector** o_ppVecZ);
+	[id(20), helpstring("method GetPAx")] HRESULT GetPAx([out,retval] IVector** o_ppVecP);
+	[id(21), helpstring("method GetOri")] HRESULT GetOri([out,retval] IXYZ** o_ppOri);
+	[id(22), helpstring("method GetScale")] HRESULT GetScale([out,retval] DOUBLE* o_pdScale);
+	[id(23), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(24), helpstring("method Init")] HRESULT Init(void);
+	[id(25), helpstring("method InitToXYPlnMat")] HRESULT InitToXYPlnMat(void);
+	[id(26), helpstring("method InitToYZPlnMat")] HRESULT InitToYZPlnMat(void);
+	[id(27), helpstring("method InitToZXPlnMat")] HRESULT InitToZXPlnMat(void);
+	[id(28), helpstring("method InitToVecRotMat")] HRESULT InitToVecRotMat([in] IVector* i_pStaVec, [in] IVector* i_pEndVec);
+	[id(29), helpstring("method InitToCoordPlnMirrorMat")] HRESULT InitToCoordPlnMirrorMat([in] SHORT i_iXOY, [in] SHORT i_iYOZ, [in] SHORT i_iZOX);
+	[id(30), helpstring("method InitToPlnMirrorMat")] HRESULT InitToPlnMirrorMat([in] IPlane* i_pPln);
+	[id(31), helpstring("method InitToPtMirrorMat")] HRESULT InitToPtMirrorMat([in] IXYZ* i_pPt);
+	[id(32), helpstring("method InitToScaleMat")] HRESULT InitToScaleMat([in] IXYZ* i_pPt, [in] DOUBLE i_dScale);
+	[id(33), helpstring("method RotateByAng")] HRESULT RotateByAng([in]double i_dAngX, [in]double i_dAngY,[in]double i_dAngZ);
+	[id(34), helpstring("method Rotate")] HRESULT Rotate([in]double i_dAng,[in] ILine* i_pLine);
+	[id(35), helpstring("method InitToScaleMatByThreeDir")] HRESULT InitToScaleMatByThreeDir( IXYZ* i_pPt, IXYZ*  i_pSxyz);
+	[id(36), helpstring("method InitToTriPtsMat")] HRESULT InitToTriPtsMat([in] IXYZ* i_pP0,[in] IXYZ* i_pP1,[in] IXYZ* i_pP2);
+
+	[id(37), helpstring("method IsSame")] HRESULT IsSame([in]IMatrix* i_pMat,[out,retval] VARIANT_BOOL* o_pbVal);
+	
+    [id(38), helpstring("method Inverse")] HRESULT  Inverse(); 	
+	
+	[id(39), helpstring("method Transpose")] HRESULT Transpose();
+	
+	[id(40), helpstring("method GetGlMat")] HRESULT GetGlMat([out]double* md_pVals);
+	
+	//[id(41), helpstring("method GetPkMat")] HRESULT GetPkMat([out]double* md_pVals);
+
+    [id(42), helpstring("method Unit")] HRESULT Unit(); 
+	
+	[id(43), helpstring("method GetScaleMat")] HRESULT GetScaleMat([in]IXYZ* i_Sxyz);
+	
+	[id(44), helpstring("method GetRotMat")] HRESULT GetRotMat([in] IXYZ* i_pPt,[in]double i_dRX,[in]double i_dRY,[in]double i_dRZ);
+    
+    [id(45), helpstring("method Move")] HRESULT Move([in] IXYZ* i_DeltaPt);
+
+	[id(46), helpstring("method GetValue")] HRESULT GetValue([out,retval] double* o_pdVal); 
+    
+    [id(47), helpstring("method RotRndX")] HRESULT RotRndX([in]double i_dAng); 
+    
+   [id(48), helpstring("method RotRndY")] HRESULT RotRndY([in]double i_dAng); 
+    
+    [id(49), helpstring("method RotRndZ")] HRESULT RotRndZ([in]double i_dAng); 
+
+	[id(50), helpstring("method PutByOriPt")] HRESULT PutByOriPt([in]IXYZ* i_pOriPt); 
+	[id(51), helpstring("method PutByPtNormVec")] HRESULT PutByPtNormVec([in]IXYZ* i_pOriPt,[in]IVector* i_pNormVec,[in]LONG i_PlnFlag); 
+	[id(52), helpstring("method PutByPtVecXVecZ")] HRESULT PutByPtVecXVecZ([in]IXYZ* i_pOriPt,[in]IVector* i_pVecX,[in]IVector* i_pVecZ); 
+	[id(53), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(54), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+	[id(55), helpstring("method SetScaleByPt")] HRESULT SetScaleByPt([in] IXYZ* i_pPt,[in]IXYZ* i_pSxyz);
+
+	[id(56), helpstring("method PutBy16")] HRESULT PutBy16([in] DOUBLE i_Mat[16]);
+	[id(57), helpstring("method GetRotZAng")] HRESULT GetRotZAng([out] DOUBLE* o_dAng);
+	
+
+	[id(58), helpstring("method GetMirrorFlag")] HRESULT GetMirrorFlag([out] VARIANT_BOOL* o_bMirrorFlag);
+	[id(59), helpstring("method GetMirrorAngle")] HRESULT GetMirrorAngle([out] DOUBLE* o_dMirrorAngle);
+
+	[id(60), helpstring("method PutGiMat")] HRESULT PutGiMat([in]DOUBLE i_dDisPlayMat[16]);
+	[id(61), helpstring("method GetGiMat")] HRESULT GetGiMat([out]DOUBLE o_dDisPlayMat[16]);
+
+	[id(62), helpstring("method IsUnit")] HRESULT IsUnit();
+};
+[
+	object,
+	uuid(89BCEE5B-F490-4B8E-A165-47966D583ACD),
+	dual,
+	nonextensible,
+	helpstring("IBox Interface"),
+	pointer_default(unique)
+]
+interface IBox : IDispatch{
+	[id(1001), helpstring("method GetCBox")] HRESULT GetCBox([out,retval] LONG_PTR* o_pplCBoxAddress);
+	[id(1002), helpstring("method SetMaxPos")] HRESULT SetMaxPos([in] IXYZ* i_pMaxPosPt);
+	[id(1003), helpstring("method SetMinPos")] HRESULT SetMinPos([in] IXYZ* i_pMinPosPt);
+	[id(1004), helpstring("method GetMaxPos")] HRESULT GetMaxPos([out] IXYZ** o_ppMaxPosPt);
+	[id(1005), helpstring("method GetMinPos")] HRESULT GetMinPos([out] IXYZ** o_ppMinPosPt);
+	[id(1006), helpstring("method Init")] HRESULT Init(void);
+	[id(1007), helpstring("method Scale")] HRESULT Scale([in] DOUBLE i_dScale,[in] IXYZ* i_pDtmPt);
+	[id(1008), helpstring("method Mirror")] HRESULT Mirror([in] IPlane* i_pMirrorPln,[out,retval] IBox** o_ppBox);
+	[id(1009), helpstring("method IsSame")] HRESULT IsSame([in] IBox* i_pBox,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1010), helpstring("method IsIn")] HRESULT IsIn([in] IBox* i_pBox,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1011), helpstring("method IfIntWith")] HRESULT IfIntWith([in] IBox* i_pBox,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1012), helpstring("method IfIntWithFor3")] HRESULT IfIntWithFor3([in] IBox* i_pBox0,[in]IBox* i_pBox1,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1013), helpstring("method IfPtIn")] HRESULT IfPtIn([in] IXYZ* i_pPt,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1014), helpstring("method GetMinDistByDir")] HRESULT GetMinDistByDir([in] IBox* i_pBox,[in] IVector* i_pDirVec,[out,retval] DOUBLE* o_dDist);
+	[id(1015), helpstring("method UnionByXYZ")] HRESULT UnionByXYZ([in] IXYZ* i_pPt);
+	[id(1016), helpstring("method UnionByBox")] HRESULT UnionByBox([in] IBox* i_pBox);
+	[id(1017), helpstring("method Trans")] HRESULT Trans([in] IMatrix* i_pMat);
+	[id(1018), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1019), helpstring("method UnionByXYZs")] HRESULT UnionByXYZs([in]IXYZArray* i_pPts,[in]int i_iNum);
+	[id(1020), helpstring("method PutIBox")] HRESULT PutIBox([in]IBox* i_pBox);
+	[id(1021), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1022), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+	[id(1023), helpstring("GetMinPosCoord")]HRESULT GetMinPosCoord([out]double* pdx, [out]double* pdy, [out]double* pdz);
+	[id(1024), helpstring("GetMaxPosCoord")]HRESULT GetMaxPosCoord([out]double* pdx, [out]double* pdy, [out]double* pdz);
+	[id(1025), helpstring("SetMinPosCoord")]HRESULT SetMinPosCoord([in]double dx, [in]double dy, [in]double dz);
+	[id(1026), helpstring("SetMaxPosCoord")]HRESULT SetMaxPosCoord([in]double dx, [in]double dy, [in]double dz);
+	[id(1027), helpstring("TransAsRect")]HRESULT TransAsRect([in] IMatrix* i_pMat);
+	[id(1028), helpstring("UnionByXYZCoord")]HRESULT UnionByXYZCoord([in] double dx, [in] double dy, [in] double dz);
+	[id(1029), helpstring("判断本Box是否在另一个Box外面")]HRESULT IsOutBox(IBox* i_ipBox, VARIANT_BOOL* o_pbVal );
+	[id(1030), helpstring("UnionByBoxCoord")]HRESULT UnionByBoxCoord([in] double dMinX, [in] double dMinY, [in] double dMaxX, [in] double dMaxY);
+	[id(1031), helpstring("判断本Box是否完全在另一个Box外面")]HRESULT IsOutBoxByCoord([in]double i_dMinX, [in]double i_dMinY, [in]double i_dMaxX, [in] double i_dMaxY, [out]VARIANT_BOOL* o_pbVal );
+};
+[
+	object,
+	uuid(D568534C-9257-4342-B56A-F0CB702ACD0F),
+	dual,
+	nonextensible,
+	helpstring("IXYZW Interface"),
+	pointer_default(unique)
+]
+interface IXYZW : IXYZ{
+	[id(1001), helpstring("method GetCXYZW")] HRESULT GetCXYZW([out,retval] LONG_PTR* o_pplCXYZWAddress);
+	[id(1002), helpstring("method IsSame")] HRESULT IsSame([in] IXYZW* i_pXYZW, [out,retval]  VARIANT_BOOL* o_pbVal);
+	[id(1003), helpstring("method TransToHomogen")] HRESULT TransToHomogen();
+	[id(1004), helpstring("method TransFromHomogenTo3D")] HRESULT TransFromHomogenTo3D();
+	[id(1005), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1006), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+	[id(1007), helpstring("method PutW")] HRESULT PutW([in]DOUBLE i_dW);
+	[id(1008), helpstring("method GetW")] HRESULT GetW([out]DOUBLE* o_dW);
+};
+
+
+[
+	object,
+	uuid(82FCF6FD-C3CD-407A-B183-8A34B066B7B5),
+	dual,
+	nonextensible,
+	helpstring("ICoord Interface"),
+	pointer_default(unique)
+]
+interface ICoord : IDispatch{
+	[id(1001), helpstring("method SetMatrix")] HRESULT SetMatrix([in] IMatrix* i_pMat);
+	[id(1002), helpstring("method Init")] HRESULT Init(void);
+	[id(1003), helpstring("method SetOrigin")] HRESULT SetOrigin([in] IXYZ* i_pPt);
+	[id(1004), helpstring("method ChangeXAxTo")] HRESULT ChangeXAxTo([in] IVector* i_pVec);
+	[id(1005), helpstring("method ChangeYAxTo")] HRESULT ChangeYAxTo([in] IVector* i_pVec);
+	[id(1006), helpstring("method ChangeZAxTo")] HRESULT ChangeZAxTo([in] IVector* i_pVec);
+	[id(1007), helpstring("method SetPAxis")] HRESULT SetPAxis([in] IVector* i_pVec);
+	[id(1008), helpstring("method IsSame")] HRESULT IsSame([in] ICoord* i_pCod,VARIANT_BOOL* o_pbVal  );
+	[id(1009), helpstring("method UCSToWCS")] HRESULT UCSToWCS([in] IXYZ* i_pPt,[out] IXYZ** o_ppPt);
+	[id(1010), helpstring("method WCSToUCS")] HRESULT WCSToUCS([in] IXYZ* i_pPt,[out] IXYZ** o_ppPt);
+	[id(1011), helpstring("method Move")] HRESULT Move([in] IXYZ* i_pDeltaPt);
+	[id(1012), helpstring("method Trans")] HRESULT Trans([in] IMatrix* i_pMat);
+	[id(1013), helpstring("method Rotate")] HRESULT Rotate([in] DOUBLE i_dRotAng,[in] IVector* i_pVec, [in] IXYZ* i_pDtmPt);
+	[id(1014), helpstring("method RotRndX")] HRESULT RotRndX([in] DOUBLE i_dRotAng);
+	[id(1015), helpstring("method RotRndY")] HRESULT RotRndY([in] DOUBLE i_dRotAng);
+	[id(1016), helpstring("method RotRndZ")] HRESULT RotRndZ([in] DOUBLE i_dRotAng);
+	[id(1017), helpstring("method GetCCxCoord")] HRESULT GetCCxCoord([out,retval] LONG_PTR* o_pplCCxCoordAddress);
+	[id(1018), helpstring("method UCSToWCSByVec")] HRESULT UCSToWCSByVec([in] IVector* i_pVec,[out] IVector** o_ppVec);
+	[id(1019), helpstring("method WCSToUCSByVec")] HRESULT WCSToUCSByVec([in] IVector* i_pVec,[out] IVector** o_ppVec);
+	[id(1020), helpstring("method IsLegal")] HRESULT IsLegal([out,retval] VARIANT_BOOL* o_pbVal);
+	[id(1021), helpstring("method GetPtAftTrans")] HRESULT GetPtAftTrans([in] IXYZ* i_pPt, [in] IMatrix* i_pMat, [out,retval] IXYZ** o_ppPt);
+	[id(1022), helpstring("method SetPlnStatus")] HRESULT SetPlnStatus([in] LONG i_PlnStatus, [out,retval] LONG* o_OldPlnStatus);
+	[id(1023), helpstring("method Mirror")] HRESULT Mirror([in] IPlane* i_pMirrorPln,[out,retval] ICoord** o_ppCod);
+	[id(1024), helpstring("method GetXAxis")] HRESULT GetXAxis([out,retval] IVector** o_ppVecX);
+	[id(1025), helpstring("method GetYAxis")] HRESULT GetYAxis([out,retval] IVector** o_ppVecY);
+	[id(1026), helpstring("method GetZAxis")] HRESULT GetZAxis([out,retval] IVector** o_ppVecZ);
+	[id(1027), helpstring("method GetPAxis")] HRESULT GetPAxis([out,retval] IVector** o_ppVecZ);
+	[id(1028), helpstring("method GetXYPlnMat")] HRESULT GetXYPlnMat([out,retval] IMatrix** o_ppXYMat);
+	[id(1029), helpstring("method GetYZPlnMat")] HRESULT GetYZPlnMat([out,retval] IMatrix** o_ppYZMat);
+	[id(1030), helpstring("method GetZXPlnMat")] HRESULT GetZXPlnMat([out,retval] IMatrix** o_ppZXMat);
+	[id(1031), helpstring("method GetPlnStatus")] HRESULT GetPlnStatus([out,retval] LONG* o_plPlnState);
+	[id(1032), helpstring("method GetPosMat")] HRESULT GetPosMat([out,retval] IMatrix** o_ppMat);
+	[id(1033), helpstring("method GetOrigin")] HRESULT GetOrigin([out,retval] IXYZ** o_ppPt);
+	[id(1034), helpstring("method GetInvrsMat")] HRESULT GetInvrsMat([out,retval] IMatrix** o_ppMat);
+	[id(1035), helpstring("method GetCurCoordPlnNorm")] HRESULT GetCurCoordPlnNorm([out] IVector** o_ppNorm);
+
+	[id(1036), helpstring("method PutByIMatrix")] HRESULT PutByIMatrix([in] IMatrix* i_pMat,[in]LONG i_PlnStatus);
+	[id(1037), helpstring("method PutByICoord")] HRESULT PutByICoord([in] ICoord* i_pCoord );
+	[id(1038), helpstring("method PutByPtVecXVecZ")] HRESULT PutByPtVecXVecZ([in]IXYZ* i_pOriPt,[in]IVector* i_pVecX,[in]IVector* i_pVecZ,[in] LONG i_PlnStatus);
+	[propget,id(1039),helpstring("property Name")]HRESULT Name([out,retval]BSTR* o_pbsName);
+	[propput,id(1039),helpstring("property Name")]HRESULT Name([in]BSTR i_bsName);
+	[id(1040), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(1041), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+
+};
+
+
+[
+	object,
+	uuid(9B3AE1A9-1AD6-4116-A293-2D04B7788371),
+	dual,
+	nonextensible,
+	helpstring("ICoordColl Interface"),
+	pointer_default(unique)
+]
+interface ICoordColl : IDispatch
+{
+	[id(1), helpstring("method GetCount")] 
+	HRESULT GetCount( [out, retval]SIZE_T* o_plCount );
+	[id(2), helpstring("method IsEmpty ")] 
+	HRESULT IsEmpty( [out, retval]VARIANT_BOOL* o_pbEmpty );
+
+	[id(3), helpstring("method GetHead ")] 
+	HRESULT GetHead( [out, retval]ICoord** o_ppItem );
+	[id(4), helpstring("method GetTail ")] 
+	HRESULT GetTail( [out, retval]ICoord** o_ppItem );
+
+	[id(5), helpstring("method RemoveHead ")] 
+	HRESULT RemoveHead( [out, retval]ICoord** o_ppItem );
+	[id(6), helpstring("method RemoveTail ")] 
+	HRESULT RemoveTail( [out, retval]ICoord** o_ppItem );
+	[id(7), helpstring("method RemoveHeadNoReturn ")] 
+	HRESULT RemoveHeadNoReturn( void );
+	[id(8), helpstring("method RemoveTailNoReturn ")] 
+	HRESULT RemoveTailNoReturn( void );
+	[id(9), helpstring("method RemoveItem ")] 
+	HRESULT RemoveItem( [in]ICoord* i_pItem );
+	[id(10), helpstring("method UnregisterChild")] 
+	HRESULT RemoveAll( void );
+
+	[id(11), helpstring("method AddHead ")] 
+	HRESULT AddHead( [in]ICoord* i_pItem, [in, out, defaultvalue(0)]LONG_PTR* o_lpPosition );
+	[id(12), helpstring("method AddHeadColl")] 
+	HRESULT AddHeadColl( [in]ICoordColl* i_pColl );
+	[id(13), helpstring("method AddTail ")] 
+	HRESULT AddTail( [in]ICoord* i_pItem, [in, out, defaultvalue(0)]LONG_PTR* o_lpPosition );
+	[id(14), helpstring("method AddTailColl")] 
+	HRESULT AddTailColl( [in]ICoordColl* i_pColl );
+
+	[id(15), helpstring("method GetHeadPosition")] 
+	HRESULT GetHeadPosition( [out, retval]LONG_PTR* o_pPos );
+	[id(16), helpstring("method GetTailPosition")] 
+	HRESULT GetTailPosition( [out, retval]LONG_PTR* o_pPos );
+	[id(17), helpstring("method GetNext")] 
+	HRESULT GetNext( [in,out]LONG_PTR* io_pPos, [out, retval]ICoord** o_ppItem );
+	[id(18), helpstring("method GetPrev")] 
+	HRESULT GetPrev( [in,out]LONG_PTR* io_pPos, [out, retval]ICoord** o_ppItem );
+	[id(19), helpstring("method GetAt")] 
+	HRESULT GetAt( [in]LONG_PTR i_pos, [out, retval]ICoord** o_ppItem );
+	[id(20), helpstring("method SetAt")] 
+	HRESULT SetAt( [in]LONG_PTR i_pos, [in]ICoord* i_pItem );
+	[id(21), helpstring("method RemoveAt")] 
+	HRESULT RemoveAt( [in]LONG_PTR i_pos );
+
+	[id(22), helpstring("method InsertAfter")] 
+	HRESULT InsertAfter( [in]ICoord* i_pItem, [in,out]LONG_PTR* io_lpPosition );
+	[id(23), helpstring("method InsertBefore")] 
+	HRESULT InsertBefore( [in]ICoord* i_pItem, [in,out]LONG_PTR* io_lpPosition );
+	[id(24), helpstring("method Find")] 
+	HRESULT Find( [in]ICoord* i_pItem, [in]LONG_PTR i_posStart, [in,out]LONG_PTR* o_pPos );
+	[id(25), helpstring("method FindIndex")] 
+	HRESULT FindIndex( [in]SIZE_T i_lIndex, [out, retval]LONG_PTR* o_lpPosition );
+	[id(26), helpstring("method MoveToHead")] 
+	HRESULT MoveToHead( [in]LONG_PTR i_pos );
+	[id(27), helpstring("method MoveToTail")] 
+	HRESULT MoveToTail( [in]LONG_PTR i_pos );
+	[id(28), helpstring("method SwapElements")] 
+	HRESULT SwapElements( [in]LONG_PTR i_pos1, [in]LONG_PTR i_pos2 );
+
+	[id(29),helpstring("method GetIndex")]
+	HRESULT GetIndex([in]ICoord* i_pItem,[out,retval]LONG* o_iIdx);
+};
+
+[
+	object,
+	uuid(808CFD8B-79DA-4CDD-80B7-68DDC72F8917),
+	dual,
+	nonextensible,
+	helpstring("IExpressions Interface"),
+	pointer_default(unique)
+]
+interface IExpressions : IDispatch{
+	[id(1), helpstring("method exprCalExpByRadian")] HRESULT  exprCalExpByRadian([in]BSTR i_exp,[out,retval]DOUBLE* o_dresult);
+	[id(2), helpstring("method exprCalExpByDegree")] HRESULT  exprCalExpByDegree([in]BSTR i_exp,[out,retval]DOUBLE* o_dresult);
+	[id(3), helpstring("method CalExp")] HRESULT  CalExp([in] BSTR i_exp, [out,retval]DOUBLE* i_dresult); //计算表达式的值,出错返回值为0:RTERROR
+	[id(4), helpstring("method IniFuncTable")] HRESULT IniFuncTable();
+	// 添加变量
+	[id(5), helpstring("method AddValueTable")] HRESULT AddValueTable([in]char i_flag, [in]BSTR i_pName, [in]BSTR i_pSlave, [in]DOUBLE i_dValue);
+	// 添加功能
+	[id(6), helpstring("method AddFunc")] HRESULT AddFunc([in]LONG_PTR i_lFuncAddress,[in]BSTR i_FuncStr);
+	//[id(7), helpstring("method GetValIndex")] HRESULT GetValIndex(int i,VARTABLE*& o_pVal);
+	//[id(8), helpstring("method GetFuncIndex")] HRESULT GetFuncIndex(int i,Function*& o_pFunc);
+	[id(7), helpstring("method GetValIndex")] HRESULT GetValIndex([in]LONG i_Indx,[out]char* o_flag,[out]BSTR* o_Name,[out]BSTR* o_Slave,[out]DOUBLE* o_dValue);
+	[id(8), helpstring("method GetFuncIndex")] HRESULT GetFuncIndex([in]LONG i_Indx,[out]LONG_PTR* o_lFuncAddress,[out]BSTR* o_FuncStr);
+	[id(9), helpstring("method IsInStr")] HRESULT IsInStr([in]char i_ch,[in]BSTR i_s,[out]VARIANT_BOOL* o_IsIn);	//判断ch是否为s中的一员
+	[id(10), helpstring("method UpdateSlaveVar")] HRESULT UpdateSlaveVar();//更新受约束的变量的值
+	[id(11),helpstring("method IsBoolTrue")] HRESULT IsBoolTrue([in]BSTR i_bsDefine,[out,retval]VARIANT_BOOL* o_pbVal);      //判断bool表达式是否成立
+	[id(12),helpstring("method GetVarCount")]HRESULT GetVarCount([out]INT* o_iCount );
+	[id(13), helpstring("method SetValIndex")] HRESULT SetValIndex([in]LONG i_Indx,[in]char i_cflag,[in]BSTR i_bsName,[in]BSTR i_bsSlave,[in]DOUBLE i_dValue);
+	[id(14), helpstring("method Init")]HRESULT Init();
+
+	[id(15), helpstring("method SetErrorHandler")] HRESULT SetErrorHandler([in] LONG* pFuncAddress);
+	[id(16), helpstring("method IsParaUsed")] HRESULT IsParaUsed([out]VARIANT_BOOL* o_vbParaUsed);
+};
+
+
+[
+	object,
+	uuid(8F988ACE-D1BA-4DB9-9725-FD275DDA044C),
+	dual,
+	nonextensible,
+	helpstring("IXYZTs Interface"),
+	pointer_default(unique)
+]
+interface IXYZTs : IDispatch{
+	[id(1), helpstring("method GetCXYZTs")] HRESULT GetCXYZTs([out] LONG_PTR* o_pplCXYZTsAddress);
+	[id(2), helpstring("method Init")] HRESULT Init(void);
+	[id(3), helpstring("method GetParaType")] HRESULT GetParaType( [out]LONG* o_pParaType );
+	[id(4), helpstring("method SetParaType")] HRESULT SetParaType( [in]LONG i_ParaType);
+	[id(5), helpstring("method GetUV")] HRESULT GetUV( [out]DOUBLE* o_pu0,[out]DOUBLE* o_pu1,[out]DOUBLE* o_pv0,[out]DOUBLE* o_pv1 );
+	[id(6), helpstring("method SetUV")] HRESULT SetUV( [in]DOUBLE i_u0,[in]DOUBLE i_u1,[in]DOUBLE i_v0,[in]DOUBLE i_v1);
+	[id(7), helpstring("method IsLegal")] HRESULT IsLegal( [out,retval] VARIANT_BOOL* o_pbVal );
+	[id(8), helpstring("method IsSame")] HRESULT IsSame( [in] IXYZ* i_pPt,[out,retval] VARIANT_BOOL* o_pbVal);
+	[id(9), helpstring("method CopyFrom")] HRESULT CopyFrom( [in]IXYZTs* i_pPtTs );
+	[id(10), helpstring("method SetIXYZ")] HRESULT SetIXYZ( [in]IXYZ* i_pPt);
+	[id(11), helpstring("method GetIXYZ")] HRESULT GetIXYZ( [out,retval]IXYZ** o_ppPt);
+	[id(12), helpstring("method GetXYZ")] HRESULT GetXYZ( [out] double* o_dx, [out] double* o_dy,[out] double* o_dz);
+	[id(13), helpstring("method SetXYZ")] HRESULT SetXYZ( [in] double i_dx, [in] double i_dy,[in] double i_dz);
+	[id(14), helpstring("Save")]HRESULT Save([in]ICxFiler* i_ipFiler);
+	[id(15), helpstring("Load")]HRESULT Load([in]ICxFiler* i_ipFiler);
+};
+[
+	object,
+	uuid(86E71A50-11C5-4B77-99ED-5DAA533466EC),
+	dual,
+	nonextensible,
+	helpstring("IXYZTsArray Interface"),
+	pointer_default(unique)
+]
+interface IXYZTsArray : IDispatch{
+	[id(1), helpstring("method GetCXYZTsArray")] HRESULT GetCXYZTsArray([out] LONG_PTR* o_plCXYZTsArrayAddress);
+	[id(2), helpstring("method NewXYZTsArray")] HRESULT NewXYZTsArray();
+	[id(3), helpstring("method SetXYZTsArraySize")] HRESULT SetXYZTsArraySize([in] LONG i_Size);
+	[id(4), helpstring("method GetXYZTsArraySize")] HRESULT GetXYZTsArraySize([out,retval] LONG* o_pSize);
+	[id(5), helpstring("method GetIXYZTs")] HRESULT GetIXYZTs([in] int i_Index,[out,retval] IXYZTs** o_ppXYZTs);
+	[id(6), helpstring("method SetIXYZTs")] HRESULT SetIXYZTs( int i_Index,[in] IXYZTs* i_pXYZTs);
+	[id(7), helpstring("method SetCXYZTsArray")] HRESULT SetCXYZTsArray([in] LONG_PTR i_lXYZTsArrayAddress);
+	[id(8), helpstring("method GetXYZ")] HRESULT GetXYZ([in]int i_Index, [out] double* o_dx, [out] double* o_dy,[out] double* o_dz);
+	[id(9), helpstring("method SetXYZ")] HRESULT SetXYZ([in]int i_Index, [in] double i_dx, [in] double i_dy,[in] double i_dz);
+	
+	
+};
+[
+	object,
+	uuid(527AC569-0E21-4CE4-9985-EEF4AB3AE90D),
+	dual,
+	nonextensible,
+	helpstring("IXYZArray Interface"),
+	pointer_default(unique)
+]
+interface IXYZArray : IDispatch{
+	[id(1), helpstring("method GetCXYZArray")] HRESULT GetCXYZArray( [out]LONG_PTR* o_plCXYZArrayAddress);
+	[id(2), helpstring("method SetCXYZArray")] HRESULT SetCXYZArray( [in]LONG_PTR i_lXYZArrayAddress);
+
+	[id(3), helpstring("method NewXYZArray")] HRESULT NewXYZArray();
+
+	[id(4), helpstring("method SetXYZArraySize")] HRESULT SetXYZArraySize([in]LONG i_Size);
+
+	[id(5), helpstring("method GetXYZArraySize")] HRESULT GetXYZArraySize([out,retval]LONG* o_pSize);
+
+	[id(6), helpstring("method GetIXYZ")] HRESULT GetIXYZ( [in]int i_Index, [out,retval]IXYZ** o_ppXYZ);
+
+	[id(7), helpstring("method SetIXYZ")] HRESULT SetIXYZ( [in]int i_Index,[in]IXYZ* i_pXYZ);
+
+	[id(8), helpstring("method GetXYZ")] HRESULT GetXYZ([in]int i_Index, [out] double* o_dx, [out] double* o_dy,[out] double* o_dz);
+
+	[id(9), helpstring("method SetXYZ")] HRESULT SetXYZ([in]int i_Index, [in] double i_dx, [in] double i_dy,[in] double i_dz);
+	
+};
+[
+	object,
+	uuid(CB4A6F4A-DD2C-4958-B733-6514C6331D9A),
+	dual,
+	nonextensible,
+	helpstring("IXYZWArray Interface"),
+	pointer_default(unique)
+]
+interface IXYZWArray : IDispatch{
+	[id(1), helpstring("method GetCXYZWArray")] HRESULT GetCXYZWArray( [out]LONG_PTR* o_plCXYZWArrayAddress);
+	[id(2), helpstring("method SetCXYZWArray")] HRESULT SetCXYZWArray( [in]LONG_PTR i_lXYZWArrayAddress);
+
+	[id(3), helpstring("method NewXYZWArray")] HRESULT NewXYZWArray();
+
+	[id(4), helpstring("method SetXYZWArraySize")] HRESULT SetXYZWArraySize([in]LONG i_Size);
+
+	[id(5), helpstring("method GetXYZWArraySize")] HRESULT GetXYZWArraySize([out,retval]LONG* o_pSize);
+
+	[id(6), helpstring("method GetIXYZW")] HRESULT GetIXYZW( [in]int i_Index, [out,retval]IXYZW** o_ppXYZW);
+
+	[id(7), helpstring("method SetIXYZW")] HRESULT SetIXYZW( [in]int i_Index,[in]IXYZW* i_pXYZW);
+
+	[id(8), helpstring("method GetXYZW")] HRESULT GetXYZW([in]int i_Index, [out] double* o_dx, [out] double* o_dy,[out] double* o_dz,[out] double* o_dw);
+
+	[id(9), helpstring("method SetXYZW")] HRESULT SetXYZW([in]int i_Index, [in] double i_dx, [in] double i_dy,[in] double i_dz,[in] double i_dw);
+	
+};
+[
+	object,
+	uuid(567B7ABE-39F7-477B-A696-44597B6FE885),
+	dual,
+	nonextensible,
+	helpstring("IVectorArray Interface"),
+	pointer_default(unique)
+]
+interface IVectorArray : IDispatch{
+	[id(1), helpstring("method GetCVectorArray")] HRESULT GetCVectorArray( [out]LONG_PTR* o_plCVectorArrayAddress);
+	[id(2), helpstring("method SetCVectorArray")] HRESULT SetCVectorArray( [in]LONG_PTR i_lVectorArrayAddress);
+
+	[id(3), helpstring("method NewVectorArray")] HRESULT NewVectorArray();
+
+	[id(4), helpstring("method SetVectorArraySize")] HRESULT SetVectorArraySize([in]LONG i_Size);
+
+	[id(5), helpstring("method GetVectorArraySize")] HRESULT GetVectorArraySize([out,retval]LONG* o_pSize);
+
+	[id(6), helpstring("method GetIVector")] HRESULT GetIVector( [in]int i_Index, [out,retval]IVector** o_ppVec);
+
+	[id(7), helpstring("method SetIVector")] HRESULT SetIVector( [in]int i_Index,[in]IVector* i_pVec);
+
+	[id(8), helpstring("method GetXYZ")] HRESULT GetXYZ([in]int i_Index, [out] double* o_dx, [out] double* o_dy,[out] double* o_dz);
+
+	[id(9), helpstring("method SetXYZ")] HRESULT SetXYZ([in]int i_Index, [in] double i_dx, [in] double i_dy,[in] double i_dz);
+	
+
+};
+[
+	object,
+	uuid(B7482EB0-B007-461B-B920-F9D8CA0422DC),
+	dual,
+	nonextensible,
+	helpstring("IMathTool Interface"),
+	pointer_default(unique)
+]
+interface IMathTool : IDispatch{
+	[id(1), helpstring("method GetPI")] HRESULT GetPI( [out,retval] double* o_pdPI) ;
+	[id(2), helpstring("method GetInfinite")] HRESULT GetInfinite( [out,retval] double* o_pdInf) ;
+	
+	[id(3), helpstring("method GetMaxInt")] HRESULT GetMaxInt( [out,retval] int* o_piMaxInt);
+	[id(4), helpstring("method GetMaxInt")] HRESULT GetMaxLen([out,retval] double* o_pdMaxLen);
+	
+	[id(5), helpstring("method SetMaxInt")] HRESULT SetMaxInt([in]int i_iMaxInt);
+	[id(6), helpstring("method SetMaxLen")] HRESULT SetMaxLen([in]double i_dMaxLen);
+
+	[id(7), helpstring("method GetArcCos")] HRESULT GetArcCos( [in]double i_dVal,[out,retval] double* o_pdArcCos);
+	
+	[id(8), helpstring("method GetDeterm")] HRESULT GetDeterm( [in]double i_dA1,[in]double i_dA2,[in]double i_dA3,
+		[in]double i_dB1,[in]double i_dB2,[in]double i_dB3,[in]double i_dC1,[in]double i_dC2,[in]double i_dC3,[out,retval] double* o_pdDeterm);
+
+	[id(9), helpstring("method GetTol")] HRESULT GetTol( [out,retval]ITolerance** o_ppTol);
+	[id(10),helpstring("method SetTol")] HRESULT SetTol([in]ITolerance* i_pTol);
+};
+[
+	object,
+	uuid(C1E6CEC4-9F14-4E62-A686-4554FA69AAB1),
+	dual,
+	nonextensible,
+	helpstring("ITolerance Interface"),
+	pointer_default(unique)
+]
+interface ITolerance : IDispatch{
+	[id(1), helpstring("method SetDist")] HRESULT SetDist	( [in]double i_dVal );
+	[id(2), helpstring("method CopyFrom")] HRESULT CopyFrom([in] ITolerance* i_pTol);
+    [id(3), helpstring("method GetMath")] HRESULT GetMath( [out,retval] double* o_dMath);
+    [id(4), helpstring("method GetPara")] HRESULT GetPara([out,retval] double* o_dPara);
+	[id(5), helpstring("method GetDist")] HRESULT GetDist([out,retval] double* o_dDist);
+	[id(6), helpstring("method GetAngDeg")] HRESULT GetAngDeg([out,retval] double* o_dAngDeg);	
+	[id(7), helpstring("method GetAngRad")] HRESULT GetAngRad([out,retval] double* o_dAngRad);	
+	[id(8), helpstring("method GetArea")] HRESULT GetArea([out,retval] double* o_dArea);
+	[id(9), helpstring("method GetLink")] HRESULT GetLink([out,retval] double* o_dLink);
+	[id(10), helpstring("method SetMaxLen")] HRESULT SetMaxLen  ( [in]double i_dMaxLen);
+	[id(11), helpstring("method GetCTol")] HRESULT GetCTol  ( [out] LONG_PTR* o_pAddress);
+};
+
+
+//------------------------------------------------------
+//	点集合接口	:	IXYZColl
+//------------------------------------------------------
+[
+	object,
+	uuid(C750BDBE-1906-4ed8-8AF3-B6689C0944E1),
+	dual,
+	nonextensible,
+	helpstring("IXYZColl Interface"),
+	pointer_default(unique)
+]
+interface ICxIXYZColl: IDispatch
+{
+	[id(1), helpstring("method GetCount")] 
+	HRESULT GetCount( [out, retval]SIZE_T* o_plCount );
+	[id(2), helpstring("method IsEmpty ")] 
+	HRESULT IsEmpty( [out, retval]VARIANT_BOOL* o_pbEmpty );
+
+	[id(3), helpstring("method GetHead ")] 
+	HRESULT GetHead( [out, retval]IXYZ** o_ppItem );
+	[id(4), helpstring("method GetTail ")] 
+	HRESULT GetTail( [out, retval]IXYZ** o_ppItem );
+
+	[id(5), helpstring("method RemoveHead ")] 
+	HRESULT RemoveHead( [out, retval]IXYZ** o_ppItem );
+	[id(6), helpstring("method RemoveTail ")] 
+	HRESULT RemoveTail( [out, retval]IXYZ** o_ppItem );
+	[id(7), helpstring("method RemoveHeadNoReturn ")] 
+	HRESULT RemoveHeadNoReturn( void );
+	[id(8), helpstring("method RemoveTailNoReturn ")] 
+	HRESULT RemoveTailNoReturn( void );
+	[id(9), helpstring("method RemoveItem ")] 
+	HRESULT RemoveItem( [in]IXYZ* i_pItem );
+	[id(10), helpstring("method UnregisterChild")] 
+	HRESULT RemoveAll( void );
+
+	[id(11), helpstring("method AddHead ")] 
+	HRESULT AddHead( [in]IXYZ* i_pItem, [in, out, defaultvalue(0)]LONG_PTR* o_lpPosition );
+	[id(12), helpstring("method AddHeadColl")] 
+	HRESULT AddHeadColl( [in]ICxIXYZColl* i_pColl );
+	[id(13), helpstring("method AddTail ")] 
+	HRESULT AddTail( [in]IXYZ* i_pItem, [in, out, defaultvalue(0)]LONG_PTR* o_lpPosition );
+	[id(14), helpstring("method AddTailColl")] 
+	HRESULT AddTailColl( [in]ICxIXYZColl* i_pColl );
+
+	[id(15), helpstring("method GetHeadPosition")] 
+	HRESULT GetHeadPosition( [out, retval]LONG_PTR* o_pPos );
+	[id(16), helpstring("method GetTailPosition")] 
+	HRESULT GetTailPosition( [out, retval]LONG_PTR* o_pPos );
+	[id(17), helpstring("method GetNext")] 
+	HRESULT GetNext( [in,out]LONG_PTR* io_pPos, [out, retval]IXYZ** o_ppItem );
+	[id(18), helpstring("method GetPrev")] 
+	HRESULT GetPrev( [in,out]LONG_PTR* io_pPos, [out, retval]IXYZ** o_ppItem );
+	[id(19), helpstring("method GetAt")] 
+	HRESULT GetAt( [in]LONG_PTR i_pos, [out, retval]IXYZ** o_ppItem );
+	[id(20), helpstring("method SetAt")] 
+	HRESULT SetAt( [in]LONG_PTR i_pos, [in]IXYZ* i_pItem );
+	[id(21), helpstring("method RemoveAt")] 
+	HRESULT RemoveAt( [in]LONG_PTR i_pos );
+
+	[id(22), helpstring("method InsertAfter")] 
+	HRESULT InsertAfter( [in]IXYZ* i_pItem, [in,out]LONG_PTR* io_lpPosition );
+	[id(23), helpstring("method InsertBefore")] 
+	HRESULT InsertBefore( [in]IXYZ* i_pItem, [in,out]LONG_PTR* io_lpPosition );
+	[id(24), helpstring("method Find")] 
+	HRESULT Find( [in]IXYZ* i_pItem, [in]LONG_PTR i_posStart, [in,out]LONG_PTR* o_pPos );
+	[id(25), helpstring("method FindIndex")] 
+	HRESULT FindIndex( [in]SIZE_T i_lIndex, [out, retval]LONG_PTR* o_lpPosition );
+	[id(26), helpstring("method MoveToHead")] 
+	HRESULT MoveToHead( [in]LONG_PTR i_pos );
+	[id(27), helpstring("method MoveToTail")] 
+	HRESULT MoveToTail( [in]LONG_PTR i_pos );
+	[id(28), helpstring("method SwapElements")] 
+	HRESULT SwapElements( [in]LONG_PTR i_pos1, [in]LONG_PTR i_pos2 );
+
+	[id(29), helpstring("method Clone")]		
+	HRESULT Clone([out]ICxIXYZColl** o_ppXYZColl);
+};
+

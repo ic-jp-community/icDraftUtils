@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cdraft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdscodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdsdef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cdsmigr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cduiBaseDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="codepgid.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxappvar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxarray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxChar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxcmd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxCx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxCxInc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxdb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxDbEntityAdapter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxDbObjAdapter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxdbobject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxDbProxyEntity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxDbProxyObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxdlflagbits.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxdocman.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxed.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxEdApiCx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxedinpt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxEntryPoint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxExtensionModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxgi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiCrxContext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiCrxSubEntityTraits.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiCrxWorldDraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiCrxWorldGeometry2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiLineAttributes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiLineAttrUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxGiStyleAttributes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxHeapOpers.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxInteractionDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxmem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxprofile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxssgetfilter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxstrc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRxString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxtrans.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrxUiCx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxutmem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbapserv.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbboiler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbBomHead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbBomItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbBomTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbcolor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbcurve.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbdict.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbdim.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimCenterHole.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimChamfer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimCoord.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimCrdList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimCuts.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimDatum.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimGeoTol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimHalf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimHolePos.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimLeader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimMLeader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimOriAlign.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimOrigin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimPitch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimRay.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimRough.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimTaper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbdimvar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbDimWeld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbelipse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbEntityEmbed.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbhandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbHatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbid.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbid_ops.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbidapps.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbidar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbImageRef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbintar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbjig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbmain.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbMLeaderStyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbmstyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbmtext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbOleObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbPartNo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbpl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbptrar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbsecurity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbspline.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbsubeid.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbsymtb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbtrans.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbView2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbView3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbxEntryPoint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbxrecrd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="drawable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gearc2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gearc3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geassign.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geblok2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geblok3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gecurv2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gecurv3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gedblar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gedll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geell2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geell3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geent2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geent3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gegbl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gegblabb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gegblge.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geintarr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geintrvl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gelent2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gelent3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geline2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geline3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gelnsg2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gelnsg3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gemat2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gemat3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gepent2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geplanar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geplane.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gepnt2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gepnt3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geponc2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gept2dar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gept3dar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gescl2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gescl3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gesurf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="getol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gevc2dar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gevc3dar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gevec2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gevec3d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gevptar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inetstrc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lngtrans.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="migrtion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxboiler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxclass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxdefs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxdict.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxditer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxdlinkr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxevent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxiter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxmfcapi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxnames.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxobject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rxstrc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="subselect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxgs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxdbads.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crxMod.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CxDbDoubleClickEdit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbPDFRef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbunderlaydef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dbunderlayref.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

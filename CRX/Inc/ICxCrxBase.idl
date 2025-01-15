@@ -1,0 +1,81 @@
+//
+//（C）Copyright 2009 CAXA Technology Co., Ltd.. All rights reserved.
+//  End-users must also comply with the terms and conditions 
+//  in CAXA END-USER LICENSE AGREEMENT  while using this software.
+//
+//  版权所有（C）北京数码大方科技有限公司
+//  最终用户使用本软件必须遵守《CAXA最终用户许可使用协议》
+//
+//
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "ICxMath.idl";
+
+typedef [uuid(5AC0775F-72E2-40d1-98F6-0A6A88FAAE1A)]
+enum {
+	CX_CRX_EXTDATAOBJ	= 0,			// CRX XData
+	CX_CRX_XRECORD		= 1,			// CRX XRecord
+} CXCRXOBJENUM;
+
+interface ICxCrxObject;
+
+//------------------------------------------------------
+//	Crx接口 : ICxCrxObject
+//------------------------------------------------------
+[	
+	object,
+	uuid(517B82E4-C5D2-4bf1-98E6-E82F0F1BF34F),
+	dual,
+	nonextensible,
+	helpstring("ICxCrxObject Interface"),	
+	pointer_default(unique)
+]
+interface ICxCrxObject : IDispatch
+{
+	[id(1), helpstring("method SetCrxPtr")] HRESULT SetCrxPtr([in] ULONG_PTR i_pCrxObject);
+	[id(2), helpstring("method GetCrxPtr")] HRESULT GetCrxPtr([out, retval] ULONG_PTR* o_ppCrxObject);
+
+	[id(3), helpstring("method Clone")] HRESULT Clone([out] ICxCrxObject **o_ppCrxObject);
+	[id(4), helpstring("method CopyFrom")] HRESULT CopyFrom([in] ICxCrxObject* i_pCrxObject);
+
+	[id(5), helpstring("method IsCrxPtrNull")] HRESULT IsCrxPtrNull([out, retval] VARIANT_BOOL *o_pvbIsNull);
+	
+	[id(6), helpstring("method SetCallBackFlag")] HRESULT SetCallBackFlag([in] VARIANT_BOOL i_vbCanCallBack);
+	[id(7), helpstring("method GetCallBackFlag")] HRESULT GetCallBackFlag([out, retval] VARIANT_BOOL *o_pvbCanCallBack);
+};
+
+//------------------------------------------------------
+//	Crx扩充数据接口 : ICxCrxExtDataObj
+//------------------------------------------------------
+[	
+	object,
+	uuid(B76A27EA-298A-499a-ACC2-1E82C5F7D41D),
+	dual,
+	nonextensible,
+	helpstring("ICxCrxExtDataObj Interface"),	
+	pointer_default(unique)
+]
+interface ICxCrxExtDataObj : IDispatch
+{
+	[id(1), helpstring("method xData")] HRESULT xData([in] BSTR i_bsName, [out, retval] ULONG_PTR * o_ppResbuf);
+	[id(2), helpstring("method setXData")] HRESULT setXData([in] ULONG_PTR i_pResbuf);
+	[id(3), helpstring("method xDataTransformBy")] HRESULT xDataTransformBy([in]IMatrix *i_pMatrix);
+};
+
+//------------------------------------------------------
+//	XRecord接口 : ICxDbXRecord
+//------------------------------------------------------
+[	
+	object,
+	uuid(522D7F8F-2BB9-4ea8-B16F-6ADC4FAB4D88),
+	dual,
+	nonextensible,
+	helpstring("ICxDbXRecord Interface"),	
+	pointer_default(unique)
+]
+interface ICxDbXRecord : IDispatch
+{
+	[id(1), helpstring("method rbChain")]		 HRESULT rbChain([out, retval] ULONG_PTR * o_ppResbuf);
+	[id(2), helpstring("method setFromRbChain")] HRESULT setFromRbChain([in] ULONG_PTR i_pResbuf);
+};

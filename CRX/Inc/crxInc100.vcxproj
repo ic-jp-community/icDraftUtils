@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>CrxInc</ProjectName>
+    <ProjectGuid>{2309953C-EE05-4CDA-ABE6-1A190DDA2666}</ProjectGuid>
+    <RootNamespace>CrxInc</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="cdraft.h" />
+    <ClInclude Include="cdscodes.h" />
+    <ClInclude Include="cdsdef.h" />
+    <ClInclude Include="cdsmigr.h" />
+    <ClInclude Include="cduiBaseDialog.h" />
+    <ClInclude Include="codepgid.h" />
+    <ClInclude Include="crxappvar.h" />
+    <ClInclude Include="crxarray.h" />
+    <ClInclude Include="crxChar.h" />
+    <ClInclude Include="crxcmd.h" />
+    <ClInclude Include="CrxCx.h" />
+    <ClInclude Include="crxCxInc.h" />
+    <ClInclude Include="crxdb.h" />
+    <ClInclude Include="crxdbads.h" />
+    <ClInclude Include="CrxDbEntityAdapter.h" />
+    <ClInclude Include="CrxDbObjAdapter.h" />
+    <ClInclude Include="crxdbobject.h" />
+    <ClInclude Include="CrxDbProxyEntity.h" />
+    <ClInclude Include="CrxDbProxyObject.h" />
+    <ClInclude Include="CRxDefine.h" />
+    <ClInclude Include="crxdlflagbits.h" />
+    <ClInclude Include="crxdocman.h" />
+    <ClInclude Include="crxed.h" />
+    <ClInclude Include="CrxEdApiCx.h" />
+    <ClInclude Include="crxedinpt.h" />
+    <ClInclude Include="crxEntryPoint.h" />
+    <ClInclude Include="CRxExtensionModule.h" />
+    <ClInclude Include="crxgi.h" />
+    <ClInclude Include="CRxGiCrxContext.h" />
+    <ClInclude Include="CRxGiCrxSubEntityTraits.h" />
+    <ClInclude Include="CRxGiCrxWorldDraw.h" />
+    <ClInclude Include="CRxGiCrxWorldGeometry2.h" />
+    <ClInclude Include="CRxGiLineAttributes.h" />
+    <ClInclude Include="CRxGiLineAttrUtils.h" />
+    <ClInclude Include="CRxGiStyleAttributes.h" />
+    <ClInclude Include="crxgs.h" />
+    <ClInclude Include="CRxHeapOpers.h" />
+    <ClInclude Include="CrxInteractionDef.h" />
+    <ClInclude Include="crxmem.h" />
+    <ClInclude Include="crxMod.h" />
+    <ClInclude Include="crxObject.h" />
+    <ClInclude Include="crxprofile.h" />
+    <ClInclude Include="crxssgetfilter.h" />
+    <ClInclude Include="crxstrc.h" />
+    <ClInclude Include="CRxString.h" />
+    <ClInclude Include="crxtrans.h" />
+    <ClInclude Include="CrxUiCx.h" />
+    <ClInclude Include="crxutmem.h" />
+    <ClInclude Include="CxDbDoubleClickEdit.h" />
+    <ClInclude Include="dbapserv.h" />
+    <ClInclude Include="dbboiler.h" />
+    <ClInclude Include="dbBomHead.h" />
+    <ClInclude Include="dbBomItem.h" />
+    <ClInclude Include="dbBomTable.h" />
+    <ClInclude Include="dbcolor.h" />
+    <ClInclude Include="dbcurve.h" />
+    <ClInclude Include="dbdict.h" />
+    <ClInclude Include="dbdim.h" />
+    <ClInclude Include="dbDimCenterHole.h" />
+    <ClInclude Include="dbDimChamfer.h" />
+    <ClInclude Include="dbDimCoord.h" />
+    <ClInclude Include="dbDimCrdList.h" />
+    <ClInclude Include="dbDimCuts.h" />
+    <ClInclude Include="dbDimDatum.h" />
+    <ClInclude Include="dbDimGeoTol.h" />
+    <ClInclude Include="dbDimHalf.h" />
+    <ClInclude Include="dbDimHolePos.h" />
+    <ClInclude Include="dbDimLeader.h" />
+    <ClInclude Include="dbDimMLeader.h" />
+    <ClInclude Include="dbDimOriAlign.h" />
+    <ClInclude Include="dbDimOrigin.h" />
+    <ClInclude Include="dbDimPitch.h" />
+    <ClInclude Include="dbDimRay.h" />
+    <ClInclude Include="dbDimRough.h" />
+    <ClInclude Include="dbDimTaper.h" />
+    <ClInclude Include="dbdimvar.h" />
+    <ClInclude Include="dbDimWeld.h" />
+    <ClInclude Include="dbelipse.h" />
+    <ClInclude Include="dbEntityEmbed.h" />
+    <ClInclude Include="dbents.h" />
+    <ClInclude Include="dbhandle.h" />
+    <ClInclude Include="dbHatch.h" />
+    <ClInclude Include="dbid.h" />
+    <ClInclude Include="dbid_ops.h" />
+    <ClInclude Include="dbidapps.h" />
+    <ClInclude Include="dbidar.h" />
+    <ClInclude Include="dbImageRef.h" />
+    <ClInclude Include="dbintar.h" />
+    <ClInclude Include="dbjig.h" />
+    <ClInclude Include="dbmain.h" />
+    <ClInclude Include="dbMLeaderStyle.h" />
+    <ClInclude Include="dbmstyle.h" />
+    <ClInclude Include="dbmtext.h" />
+    <ClInclude Include="dbOleObject.h" />
+    <ClInclude Include="dbPartNo.h" />
+    <ClInclude Include="dbpl.h" />
+    <ClInclude Include="dbptrar.h" />
+    <ClInclude Include="dbsecurity.h" />
+    <ClInclude Include="dbspline.h" />
+    <ClInclude Include="dbsubeid.h" />
+    <ClInclude Include="dbsymtb.h" />
+    <ClInclude Include="dbtrans.h" />
+    <ClInclude Include="dbView2D.h" />
+    <ClInclude Include="dbView3D.h" />
+    <ClInclude Include="dbxEntryPoint.h" />
+    <ClInclude Include="dbxrecrd.h" />
+    <ClInclude Include="drawable.h" />
+    <ClInclude Include="gearc2d.h" />
+    <ClInclude Include="gearc3d.h" />
+    <ClInclude Include="geassign.h" />
+    <ClInclude Include="geblok2d.h" />
+    <ClInclude Include="geblok3d.h" />
+    <ClInclude Include="gecurv2d.h" />
+    <ClInclude Include="gecurv3d.h" />
+    <ClInclude Include="gedblar.h" />
+    <ClInclude Include="gedll.h" />
+    <ClInclude Include="geell2d.h" />
+    <ClInclude Include="geell3d.h" />
+    <ClInclude Include="geent2d.h" />
+    <ClInclude Include="geent3d.h" />
+    <ClInclude Include="gegbl.h" />
+    <ClInclude Include="gegblabb.h" />
+    <ClInclude Include="gegblge.h" />
+    <ClInclude Include="geintarr.h" />
+    <ClInclude Include="geintrvl.h" />
+    <ClInclude Include="gelent2d.h" />
+    <ClInclude Include="gelent3d.h" />
+    <ClInclude Include="geline2d.h" />
+    <ClInclude Include="geline3d.h" />
+    <ClInclude Include="gelnsg2d.h" />
+    <ClInclude Include="gelnsg3d.h" />
+    <ClInclude Include="gemat2d.h" />
+    <ClInclude Include="gemat3d.h" />
+    <ClInclude Include="gepent2d.h" />
+    <ClInclude Include="geplanar.h" />
+    <ClInclude Include="geplane.h" />
+    <ClInclude Include="gepnt2d.h" />
+    <ClInclude Include="gepnt3d.h" />
+    <ClInclude Include="geponc2d.h" />
+    <ClInclude Include="gept2dar.h" />
+    <ClInclude Include="gept3dar.h" />
+    <ClInclude Include="gescl2d.h" />
+    <ClInclude Include="gescl3d.h" />
+    <ClInclude Include="gesurf.h" />
+    <ClInclude Include="getol.h" />
+    <ClInclude Include="gevc2dar.h" />
+    <ClInclude Include="gevc3dar.h" />
+    <ClInclude Include="gevec2d.h" />
+    <ClInclude Include="gevec3d.h" />
+    <ClInclude Include="gevptar.h" />
+    <ClInclude Include="inetstrc.h" />
+    <ClInclude Include="lngtrans.h" />
+    <ClInclude Include="migrtion.h" />
+    <ClInclude Include="rxboiler.h" />
+    <ClInclude Include="rxclass.h" />
+    <ClInclude Include="rxdefs.h" />
+    <ClInclude Include="rxdict.h" />
+    <ClInclude Include="rxditer.h" />
+    <ClInclude Include="rxdlinkr.h" />
+    <ClInclude Include="rxevent.h" />
+    <ClInclude Include="rxiter.h" />
+    <ClInclude Include="rxmfcapi.h" />
+    <ClInclude Include="rxnames.h" />
+    <ClInclude Include="rxobject.h" />
+    <ClInclude Include="rxstrc.h" />
+    <ClInclude Include="subselect.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
